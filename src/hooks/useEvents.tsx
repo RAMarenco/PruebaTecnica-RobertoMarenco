@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { Event } from "../types/Event";
 import { useEventContext } from "../context/EventContext";
 import { toast } from "sonner";
@@ -20,6 +20,11 @@ const useEvents = () => {
 
   const getEvents = () => {
 		const storedEvents = localStorage.getItem("eventData");
+		if (!storedEvents) {
+			toast.info("No hay eventos disponibles. Por favor, agregue un evento.", {
+				id: "no-events",
+			});
+		}
 		return storedEvents ? JSON.parse(storedEvents) : [];
 	}
 
@@ -49,7 +54,7 @@ const useEvents = () => {
 	const handleFilter = () => {
 		return events.filter(event => {
 			const matchesCategory = filterCategory ? filterCategory === "-" ? true : event.eventCategory === filterCategory : true;
-			const matchesPetsAllowed = filterPetsAllowed ? event.eventPetsAllowed : true;
+			const matchesPetsAllowed = filterPetsAllowed ? event.eventPetsAllowed : !event.eventPetsAllowed;
 			return matchesCategory && matchesPetsAllowed;
 		})
 	}

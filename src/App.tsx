@@ -8,7 +8,7 @@ import { Toaster } from "sonner";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
-  const {setFilterCategory, setFilterPetsAllowed} = useEventContext();
+  const {setFilterCategory, setFilterPetsAllowed, filterPetsAllowed} = useEventContext();
 
   const handleCategoryChange = (e) => {
     setFilterCategory(e.target.value)
@@ -18,19 +18,26 @@ function App() {
     setFilterPetsAllowed(e.target.checked);
   }
 
+  const handleClearFilters = () => {
+    setFilterCategory("-");
+    setFilterPetsAllowed(false);
+  }
+
   return (
     <>
       <Toaster richColors/>
       <div className="flex flex-row gap-4">
-        <div className="flex flex-col gap-4 w-1/6 bg-gray-200 h-dvh p-4 shadow-lg">
+        <div className="flex flex-col gap-4 w-[24rem] bg-gray-200 h-dvh p-4 shadow-lg">
           <CategorySelect name="filterCategory" noLabel all handleChange={handleCategoryChange}/>
-              <label className="flex flex-row justify-between gap-2">
-                ¿Admite Mascotas?
-                <input
-                  type="checkbox"
-                  className="w-6 h-6"
-                  onChange={handlePetsAllowedChange}/>
-              </label>
+          <label className="flex flex-row justify-between gap-2">
+            ¿Admite Mascotas?
+            <input
+              checked={filterPetsAllowed}
+              type="checkbox"
+              className="w-6 h-6"
+              onChange={handlePetsAllowedChange}/>
+          </label>
+          <Button title="Limpiar Filtros" handleClick={handleClearFilters}/>
         </div>
         <div className="flex flex-col gap-4 w-full p-4">
           <div className="flex flex-row gap-4 items-center justify-between">
