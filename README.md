@@ -1,69 +1,44 @@
-# React + TypeScript + Vite
+# Descripcion General
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Sistema de registro de eventos
 
-Currently, two official plugins are available:
+Este sistema permite el registro de eventos con las categorias de Videojuego, Deporte y Carrera de caballo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Se pide información del evento como, el nombre del evento, categoria del evento, precio, si permiten mascotas o no, y la fecha de dicho evento.
 
-## Expanding the ESLint configuration
+### Filtros
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+El sistema cuenta con filtros:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Petfriendly
+- Categoria
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Se pueden limpiar los filtros seleccionados
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Arquitectura
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+El proyecto se encuentra separado en:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Contextos **EventContext**: Este es el encargado de manejar la información de los eventos durante la ejecución del sistema.
+- Hooks **useEvents**: Contiene funciones comunes o relacionadas a los eventos e.j: Agregar evento, Editar evento, Eliminar Evento, Actualizar localStorage, Manejo de filtros 
+- Componentes: Elementos con capacidad de ser reutilizados a lo largo del sistema
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Proceso de instalación
+
+- Clonar repositorio
+  ```bash
+    git clone https://github.com/RAMarenco/PruebaTecnica-RobertoMarenco.git
+  ```
+
+- Instalacion de dependencias
+  ```bash
+    npm i
+  ```
+
+- Ejecutar proyecto
+  ```bash
+    npm run dev
+  ```
+
+> El proyecto se ejecuta por defecto en la ruta http://localhost:5173 o http:127.0.0.1:5173
+

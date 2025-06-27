@@ -20,11 +20,7 @@ const useEvents = () => {
 
   const getEvents = () => {
 		const storedEvents = localStorage.getItem("eventData");
-		if (!storedEvents) {
-			toast.info("No hay eventos disponibles. Por favor, agregue un evento.", {
-				id: "no-events",
-			});
-		}
+
 		return storedEvents ? JSON.parse(storedEvents) : [];
 	}
 
@@ -58,7 +54,6 @@ const useEvents = () => {
 			return matchesCategory && matchesPetsAllowed;
 		})
 	}
-
 
 	return {
 		events,
