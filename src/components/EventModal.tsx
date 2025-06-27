@@ -95,6 +95,7 @@ const EventModal = ({title, data, setShowModal} : EventModalProps) => {
 							defaultValue={data?.eventPrice || ""}
 							name="eventPrice"
 							type="number"
+							step={0.01}
 							className="w-full p-2 border bg-white border-gray-400 rounded"
 							placeholder="$0.00"
 							onChange={handleInputChange}/>
